@@ -4,7 +4,7 @@
 [![C++17](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org/)
 [![CMake](https://img.shields.io/badge/CMake-3.14+-064F8C. svg)](https://cmake.org/)
 
-A modern C++ toolkit for generating hexahedral finite element meshes from molecular structures in PDB format. BioMesh2 provides both **occupied voxel meshes** (molecule) and **empty voxel meshes** (void space) for CFD, FEM, and molecular dynamics applications.
+A modern C++ toolkit for generating hexahedral finite element meshes from molecular structures in PDB format. BioMesh provides both **occupied voxel meshes** (molecule) and **empty voxel meshes** (void space) for CFD, FEM, and molecular dynamics applications.
 
 ---
 
@@ -34,8 +34,8 @@ A modern C++ toolkit for generating hexahedral finite element meshes from molecu
 
 ```bash
 # Clone repository
-git clone https://github.com/pausalinas/BioMesh2.git
-cd BioMesh2
+git clone https://github.com/pausalinas/BioMesh.git
+cd BioMesh
 
 # Build
 mkdir build && cd build
@@ -54,7 +54,7 @@ make -j4
 cd ..
 
 # Generate both occupied and empty meshes
-./biomesh2. sh protein.pdb
+./biomesh. sh protein.pdb
 
 # Output:
 #   mesh_occupied.msh  (molecule mesh)
@@ -68,7 +68,7 @@ cd ..
 wget https://files.rcsb.org/download/1CRN.pdb
 
 # Generate high-resolution meshes
-./biomesh2.sh 1CRN.pdb -v 0.5 -o crambin_highres --verbose
+./biomesh.sh 1CRN.pdb -v 0.5 -o crambin_highres --verbose
 
 # Outputs:
 #   crambin_highres_occupied.msh
@@ -91,7 +91,7 @@ wget https://files.rcsb.org/download/1CRN.pdb
 ## Project Structure
 
 ```
-BioMesh2/
+biomesh/
 ├── include/biomesh/              # Public headers
 │   ├── Atom.hpp                  # Atom class with physical properties
 │   ├── AtomicSpec.hpp            # Atomic database (radii, masses)
@@ -117,7 +117,7 @@ BioMesh2/
 ├── data/                         # Sample PDB files
 ├── docs/                         # Documentation
 ├── config/                       # Configuration files
-├── biomesh2.sh                   # Command-line tool
+├── biomesh.sh                   # Command-line tool
 └── CMakeLists.txt                # Build configuration
 ```
 
@@ -128,19 +128,19 @@ BioMesh2/
 ### Computational Fluid Dynamics (CFD)
 Generate fluid domain meshes around proteins for flow analysis: 
 ```bash
-./biomesh2.sh protein.pdb --occupied false -v 0.5 -p 10. 0 -o fluid_domain
+./biomesh.sh protein.pdb --occupied false -v 0.5 -p 10. 0 -o fluid_domain
 ```
 
 ### Finite Element Analysis (FEM)
 Create molecular meshes for structural analysis:
 ```bash
-./biomesh2.sh protein.pdb --empty false -v 1.0 -o structural_mesh
+./biomesh.sh protein.pdb --empty false -v 1.0 -o structural_mesh
 ```
 
 ### Multi-Physics Simulations
 Generate both molecule and surrounding medium: 
 ```bash
-./biomesh2.sh protein.pdb -v 0.5 -o simulation
+./biomesh.sh protein.pdb -v 0.5 -o simulation
 # Outputs both occupied and empty meshes
 ```
 
@@ -148,7 +148,7 @@ Generate both molecule and surrounding medium:
 Multi-resolution mesh generation: 
 ```bash
 for voxel in 2. 0 1.0 0.5 0.25; do
-    ./biomesh2.sh protein.pdb -v $voxel -o mesh_${voxel}
+    ./biomesh.sh protein.pdb -v $voxel -o mesh_${voxel}
 done
 ```
 
@@ -159,7 +159,7 @@ done
 ### Basic Syntax
 
 ```bash
-./biomesh2.sh [OPTIONS] <input. pdb>
+./biomesh.sh [OPTIONS] <input. pdb>
 ```
 
 ### Key Options
@@ -180,13 +180,13 @@ done
 
 ```bash
 # Generate template
-./biomesh2.sh --generate-config > my_config.conf
+./biomesh.sh --generate-config > my_config.conf
 
 # Edit configuration
 nano my_config.conf
 
 # Run with config
-./biomesh2.sh --config my_config.conf
+./biomesh.sh --config my_config.conf
 ```
 
 **Example config:**
@@ -390,7 +390,7 @@ ATOM      3  H2  HOH A   1      -0.240   0.927   0.000  1.00  0.00           H
 END
 EOF
 
-./biomesh2.sh water. pdb -v 0.3 -p 1.0 -o water_mesh
+./biomesh.sh water. pdb -v 0.3 -p 1.0 -o water_mesh
 ```
 
 ### Example 2: Batch Processing
@@ -399,12 +399,12 @@ wget https://files.rcsb.org/download/1CRN.pdb
 wget https://files.rcsb.org/download/1MSO.pdb
 wget https://files.rcsb.org/download/2LYZ.pdb
 
-./biomesh2.sh --batch 1CRN.pdb,1MSO.pdb,2LYZ.pdb -v 1.0
+./biomesh.sh --batch 1CRN.pdb,1MSO.pdb,2LYZ.pdb -v 1.0
 ```
 
 ### Example 3: CFD Preparation
 ```bash
-./biomesh2.sh protein.pdb \
+./biomesh.sh protein.pdb \
   --occupied false \
   -v 0.5 \
   -p 15.0 \
