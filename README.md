@@ -379,7 +379,7 @@ End Elements
 
 ---
 
-## 🎓 Examples
+##  Examples
 
 ### Example 1: Water Molecule
 ```bash
@@ -467,7 +467,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 📞 Support
+##  Support
 
 - **Documentation:** [docs/](docs/)
 - **Issues:** [GitHub Issues](https://github.com/pausalinas/BioMesh/issues)
