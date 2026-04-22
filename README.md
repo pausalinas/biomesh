@@ -4,7 +4,7 @@
 [![C++17](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org/)
 [![CMake](https://img.shields.io/badge/CMake-3.14+-064F8C. svg)](https://cmake.org/)
 
-A modern C++ toolkit for generating hexahedral finite element meshes from molecular structures in PDB format. BioMesh provides both **occupied voxel meshes** (molecule) and **empty voxel meshes** (void space) for CFD, FEM, and molecular dynamics applications.
+A modern C++ toolkit for generating hexahedral finite element meshes from molecular structures in PDB format. BioMesh provides both **occupied voxel meshes** (molecule) and **empty voxel meshes** (void space) for CFD, FEM, and molecular dynamics applications
 
 ---
 
